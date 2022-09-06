@@ -101,7 +101,15 @@ export const loader: LoaderFunction = async ({request, params}) => {
     array = []
   }
 
-  const navbar = websiteRes.website.headerNav.links
+  let navbar = websiteRes.website.headerNav.links
+
+  if (websiteRes.website.headerNav.primaryLink.url !== "") {
+    navbar.push(websiteRes.website.headerNav.primaryLink)
+  }
+
+  if (websiteRes.website.headerNav.secondaryLink.url !== "") {
+    navbar.push(websiteRes.website.headerNav.secondaryLink)
+  }
 
   const loaderData: LoaderData = {
     i18n,
@@ -147,12 +155,12 @@ export default function Index() {
   }
 
   return (
-    <div className="bg-white h-full w-full p-12 flex flex-col overflow-y-auto">
+    <div className="bg-white h-full w-full pb-12 pt-20 px-4 lg:p-12 flex flex-col overflow-y-auto">
       <h1 className="relative z-20 lg:hidden w-full text-center mb-4" style={{ fontSize: fluidType(48, 64, 300, 2400, 1.5).fontSize, lineHeight: fluidType(28, 32, 300, 2400, 1.5).lineHeight }}>
         {sections[0].title}
       </h1>
-      <div className="relative z-20 font-sans mb-2 lg:mb-4 flex items-center justify-center lg:justify-between">
-        <div className="flex items-center flex-1 lg:flex-none">
+      <div className="relative z-20 font-sans mb-2 lg:mb-4 flex items-center justify-center lg:justify-between w-full">
+        <div className="flex items-center flex-none">
         {
           navbar.slice(0, navbar.length / 2).map(n => (
             n.url.includes('https://facingmyfaces.davidegiovanni.com') ? 
@@ -166,7 +174,7 @@ export default function Index() {
         <h1 className="hidden lg:block text-2xl lg:text-6xl w-full text-center">
           {sections[0].title}
         </h1>
-        <div className="flex items-center lg:justify-end flex-1 lg:flex-none">
+        <div className="flex items-center lg:justify-end flex-none">
           {
             navbar.slice(navbar.length / 2).map(n => (
               n.url.includes('https://facingmyfaces.davidegiovanni.com') ? 

@@ -115,7 +115,23 @@ export default function Page() {
       {
         sections.map((s, index) => (
           <div className={(index === 0 ? "pt-16 pb-4 " : "py-4 ") + "relative z-20 font-sans max-w-screen-xl mx-auto flex flex-col items-center"}>
-            {s.image !== "" && <div className="w-full overflow-hidden relative mb-8">
+            <h1 className="w-full text-center" style={{ fontSize: fluidType(48, 64, 300, 2400, 1.5).fontSize, lineHeight: fluidType(28, 32, 300, 2400, 1.5).lineHeight }}>
+              {s.title}
+            </h1>
+            {s.description !== "" && <h2 className="max-w-screen-md mx-auto text-center mt-4" style={{ fontSize: fluidType(20, 24, 300, 2400, 1.5).fontSize, lineHeight: fluidType(16, 20, 300, 2400, 1.5).lineHeight }}>
+              {s.description}
+            </h2>}
+            {
+              s.primaryLink.title !== '' &&
+              <>
+                {s.primaryLink.url.includes('https://facingmyfaces.davidegiovanni.com') ?
+                  <Link className="inline-block relative z-10 uppercase bg-black text-white rounded-full px-4 py-2 hover:shadow-2xl hover:scale-110 tracking-wide transition ease-in-out delay-150 duration-200 mt-4" to={s.primaryLink.url.replace('https://facingmyfaces.davidegiovanni.com', `/${params.lang}`)}>
+                    {s.primaryLink.title}
+                  </Link> :
+                  <a className="inline-block relative z-10 uppercase bg-black text-white rounded-full px-4 py-2 hover:shadow-2xl hover:scale-110  tracking-wide transition ease-in-out delay-150 duration-200 mt-4" target="_blank" rel="noopener" href={s.primaryLink.url}>{s.primaryLink.title}</a>}
+              </>
+            }
+            {s.image !== "" && <div className="w-full overflow-hidden relative z-0 mt-8">
               <Attachment attachment={{
                 id: "",
                 mediaType: "image/",
@@ -123,22 +139,6 @@ export default function Page() {
                 description: ""
               }} />
             </div>}
-            <h1 className="w-full text-center mb-4" style={{ fontSize: fluidType(48, 64, 300, 2400, 1.5).fontSize, lineHeight: fluidType(28, 32, 300, 2400, 1.5).lineHeight }}>
-              {s.title}
-            </h1>
-            {s.description !== "" && <h2 className="max-w-screen-md mx-auto text-center mb-4" style={{ fontSize: fluidType(20, 24, 300, 2400, 1.5).fontSize, lineHeight: fluidType(16, 20, 300, 2400, 1.5).lineHeight }}>
-              {s.description}
-            </h2>}
-            {
-              s.primaryLink.title !== '' &&
-              <>
-                {s.primaryLink.url.includes('https://facingmyfaces.davidegiovanni.com') ?
-                  <Link className="inline-block uppercase bg-black text-white rounded-full px-4 py-2 hover:shadow-2xl hover:scale-110 tracking-wide transition ease-in-out delay-150 duration-200" to={s.primaryLink.url.replace('https://facingmyfaces.davidegiovanni.com', `/${params.lang}`)}>
-                    {s.primaryLink.title}
-                  </Link> :
-                  <a className="inline-block uppercase bg-black text-white rounded-full px-4 py-2 hover:shadow-2xl hover:scale-110  tracking-wide transition ease-in-out delay-150 duration-200" target="_blank" rel="noopener" href={s.primaryLink.url}>{s.primaryLink.title}</a>}
-              </>
-            }
           </div>
         ))
       }

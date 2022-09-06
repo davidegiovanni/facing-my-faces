@@ -2,7 +2,7 @@ module.exports = {
   content: ["./app/**/*.{ts,tsx,jsx,js}"],
   theme: {
     fontFamily: {
-      'sans': ['"carlmarx-handwriting-regular"', 'sans-serif']
+      'sans': ['"felt-tip-woman"', 'sans-serif']
     },
     extend: {},
   },
