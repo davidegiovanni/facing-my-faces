@@ -147,19 +147,19 @@ export default function Index() {
   }
 
   return (
-    <div className="bg-red-500 h-full w-full p-12 flex flex-col overflow-y-auto">
-      <h1 className="relative z-20 lg:hidden text-2xl lg:text-6xl w-full text-center mb-4">
+    <div className="bg-white h-full w-full p-12 flex flex-col overflow-y-auto">
+      <h1 className="relative z-20 lg:hidden w-full text-center mb-4" style={{ fontSize: fluidType(48, 64, 300, 2400, 1.5).fontSize, lineHeight: fluidType(28, 32, 300, 2400, 1.5).lineHeight }}>
         {sections[0].title}
       </h1>
-      <div className="relative z-20 font-sans mb-4 flex items-center justify-center lg:justify-between">
+      <div className="relative z-20 font-sans mb-2 lg:mb-4 flex items-center justify-center lg:justify-between">
         <div className="flex items-center flex-1 lg:flex-none">
         {
           navbar.slice(0, navbar.length / 2).map(n => (
             n.url.includes('https://facingmyfaces.davidegiovanni.com') ? 
-            <Link to={n.url.replace('https://facingmyfaces.davidegiovanni.com', `/${params.lang}`)} className="flex-none">
-              <span className="sr-only">{ n.title }</span> <img className="w-16 h-16" src={`/icons/${getLinkIcon(n.url)}.png`} alt="" />
+            <Link to={n.url.replace('https://facingmyfaces.davidegiovanni.com', `/${params.lang}`)} className="flex-none group">
+              <span className="sr-only">{ n.title }</span> <img className="w-16 h-16 group-hover:rotate-6" src={`/icons/${getLinkIcon(n.url)}.png`} alt="" />
             </Link> :
-            <a href={n.url} className="flex-none" target="_blank" rel="noopener"><span className="sr-only">{ n.title }</span> <img className="w-16 h-16" src={`/icons/${getLinkIcon(n.url)}.png`} alt="" /></a>
+            <a href={n.url} className="flex-none group" target="_blank" rel="noopener"><span className="sr-only">{ n.title }</span> <img className="w-16 h-16 group-hover:-rotate-6" src={`/icons/${getLinkIcon(n.url)}.png`} alt="" /></a>
           ))
         }
         </div>
@@ -170,14 +170,15 @@ export default function Index() {
           {
             navbar.slice(navbar.length / 2).map(n => (
               n.url.includes('https://facingmyfaces.davidegiovanni.com') ? 
-              <Link to={n.url.replace('https://facingmyfaces.davidegiovanni.com', `/${params.lang}`)} className="flex-none">
-                <span className="sr-only">{ n.title }</span> <img className="w-16 h-16" src={`/icons/${getLinkIcon(n.url)}.png`} alt="" />
+              <Link to={n.url.replace('https://facingmyfaces.davidegiovanni.com', `/${params.lang}`)} className="flex-none group">
+                <span className="sr-only">{ n.title }</span> <img className="w-16 h-16 group-hover:rotate-6" src={`/icons/${getLinkIcon(n.url)}.png`} alt="" />
               </Link> :
-              <a href={n.url} className="flex-none" target="_blank" rel="noopener"><span className="sr-only">{ n.title }</span> <img className="w-16 h-16" src={`/icons/${getLinkIcon(n.url)}.png`} alt="" /></a>
+              <a href={n.url} className="flex-none group" target="_blank" rel="noopener"><span className="sr-only">{ n.title }</span> <img className="w-16 h-16 group-hover:-rotate-6" src={`/icons/${getLinkIcon(n.url)}.png`} alt="" /></a>
             ))
           }
         </div>
       </div>
+      <img src="/icons/divider-hr.png" className="w-full mb-6 lg:hidden relative z-10" alt="" />
       <div className="h-full w-full grid grid-cols-2 lg:grid-cols-6 gap-8 auto-rows-min relative z-20 flex-1">
         {
           items.map(i => (
@@ -203,11 +204,11 @@ export default function Index() {
             </Link>
           ))
         }
-        <div>
+        <div className="hover:bg-slate-100">
           <p className="sr-only">
             Add yours
           </p>
-          <Link to={`/${params.lang}/add-yours`} className="flex items-center justify-center h-full w-full aspect-square hover:scale-125 transition ease-in-out delay-150 duration-200">
+          <Link to={`/${params.lang}/add-yours`} className="flex items-center justify-center h-full w-full aspect-square hover:scale-125 transition ease-in-out delay-150 duration-200 mix-blend-multiply">
             <img className="w-20 h-20" src="/icons/add.png" alt="" />
           </Link>
         </div>

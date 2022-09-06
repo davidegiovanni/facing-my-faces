@@ -26,18 +26,18 @@ export const meta: MetaFunction = ({ data, location }) => {
   if (data !== undefined) {
     const { page } = data as LoaderData;
     title = (page.title !== '' ? page.title : "Homepage")
-    description = page.description !== '' ? page.description : page.title !== '' ? page.title : "Illustrazioni di Davide Giovanni Steccanella"
+    description = page.description !== '' ? page.description : page.title !== '' ? page.title : "Facing my faces"
     image = page.image !== '' ? page.image : ''
     url = 'https://facingmyfaces.davidegiovanni.com' + location.pathname
   }
 
   return metadata(
     {
-      title: title, 
-      description: description, 
-      image: image, 
-      url: url, 
-      robots: 'follow', 
+      title: title,
+      description: description,
+      image: image,
+      url: url,
+      robots: 'follow',
       type: 'website',
     }
   )
@@ -56,7 +56,7 @@ type LoaderData = {
   navbar: WebLinkModel[];
 };
 
-export const loader: LoaderFunction = async ({request, params}) => {
+export const loader: LoaderFunction = async ({ request, params }) => {
   const i18n = loadTranslations<I18nKeys>(params.lang as string, i18nKeys);
 
   let lang = params.lang === 'it-it' ? 'it-IT' : 'it-IT'
@@ -97,51 +97,51 @@ export default function Page() {
   const { i18n, sections, navbar, secondary } = useLoaderData<LoaderData>();
   const params = useParams()
 
-  function getSlug (url: string) {
+  function getSlug(url: string) {
     const parsed = queryString.parse(url)
     return parsed.content
   }
 
   return (
     <div className="bg-white h-full w-full p-4 overflow-y-scroll">
-        <div className="absolute top-0 left-0 m-4 z-40 w-16 h-16 mix-blend-multiply">
-          <Link to={`/${params.lang}`} className="underline">
-            <p className="sr-only">
-              Torna indietro
-            </p>
-            <img src="/icons/arrow.png" alt="" />
-          </Link>
-        </div>
-        {
-            sections.map((s, index) => (
-            <div className={(index === 0 ? "pt-16 pb-4 " : "py-4") + "relative z-20 font-sans max-w-screen-xl mx-auto flex flex-col items-center"}>
-                {s.image !== "" && <div className="w-full overflow-hidden relative mb-8">
-                    <Attachment attachment={{
-                            id: "",
-                            mediaType: "image/",
-                            url: s.image,
-                            description: ""
-                        }} />
-                </div>}
-                <h1 className="text-2xl lg:text-6xl w-full text-center mb-4">
-                {s.title}
-                </h1>
-                {s.description !== "" && <h2 className="max-w-screen-md mx-auto text-center mb-4">
-                {s.description}
-                </h2>}
-                {
-                s.primaryLink.title !== '' &&
-                <>
-                    {s.primaryLink.url.includes('https://facingmyfaces.davidegiovanni.com') ? 
-                    <Link className="inline-block uppercase bg-black text-white rounded-full px-4 py-2 hover:shadow-2xl hover:scale-110 tracking-wide transition ease-in-out delay-150 duration-200" to={s.primaryLink.url.replace('https://facingmyfaces.davidegiovanni.com', `/${params.lang}`)}>
+      <div className="absolute top-0 left-0 m-4 z-40 w-16 h-16 mix-blend-multiply">
+        <Link to={`/${params.lang}`} className="underline">
+          <p className="sr-only">
+            Torna indietro
+          </p>
+          <img src="/icons/arrow.png" alt="" />
+        </Link>
+      </div>
+      {
+        sections.map((s, index) => (
+          <div className={(index === 0 ? "pt-16 pb-4 " : "py-4 ") + "relative z-20 font-sans max-w-screen-xl mx-auto flex flex-col items-center"}>
+            {s.image !== "" && <div className="w-full overflow-hidden relative mb-8">
+              <Attachment attachment={{
+                id: "",
+                mediaType: "image/",
+                url: s.image,
+                description: ""
+              }} />
+            </div>}
+            <h1 className="w-full text-center mb-4" style={{ fontSize: fluidType(48, 64, 300, 2400, 1.5).fontSize, lineHeight: fluidType(28, 32, 300, 2400, 1.5).lineHeight }}>
+              {s.title}
+            </h1>
+            {s.description !== "" && <h2 className="max-w-screen-md mx-auto text-center mb-4" style={{ fontSize: fluidType(20, 24, 300, 2400, 1.5).fontSize, lineHeight: fluidType(16, 20, 300, 2400, 1.5).lineHeight }}>
+              {s.description}
+            </h2>}
+            {
+              s.primaryLink.title !== '' &&
+              <>
+                {s.primaryLink.url.includes('https://facingmyfaces.davidegiovanni.com') ?
+                  <Link className="inline-block uppercase bg-black text-white rounded-full px-4 py-2 hover:shadow-2xl hover:scale-110 tracking-wide transition ease-in-out delay-150 duration-200" to={s.primaryLink.url.replace('https://facingmyfaces.davidegiovanni.com', `/${params.lang}`)}>
                     {s.primaryLink.title}
-                    </Link> :
-                    <a className="inline-block uppercase bg-black text-white rounded-full px-4 py-2 hover:shadow-2xl hover:scale-110  tracking-wide transition ease-in-out delay-150 duration-200" target="_blank" rel="noopener" href={s.primaryLink.url}>{s.primaryLink.title}</a>}
-                </>
-                }
-            </div>
-            ))
-        }
+                  </Link> :
+                  <a className="inline-block uppercase bg-black text-white rounded-full px-4 py-2 hover:shadow-2xl hover:scale-110  tracking-wide transition ease-in-out delay-150 duration-200" target="_blank" rel="noopener" href={s.primaryLink.url}>{s.primaryLink.title}</a>}
+              </>
+            }
+          </div>
+        ))
+      }
     </div>
   );
 }

@@ -22,8 +22,8 @@ export const meta: MetaFunction = ({ data, location }) => {
 
   if (data !== undefined) {
     const page = data.item
-    title = (page.title !== '' ? page.title : "Page") + ' | Davide G. Steccanella'
-    description = page.summary !== '' ? page.summary : page.title !== '' ? page.title : "Le illustrazioni di Davide G. Steccanella"
+    title = (page.title !== '' ? page.title : "Page") + ' | Facing My Faces'
+    description = page.summary !== '' ? page.summary : page.title !== '' ? page.title : "Facing my faces"
     image = page.image !== '' ? page.image : ""
     url = 'https://facingmyfaces.davidegiovanni.com' + location.pathname
 
@@ -113,13 +113,23 @@ export default function ItemPage() {
             }}></Attachment>
         </div>
       </div>
-      <div className="relative z-10 -mt-24 lg:mt-0">
-        <div>
-          { item.title}
-          { item.summary}
+      <div className="lg:hidden -mt-20 overflow-hidden">
+        <img src="/icons/divider-hr.png" className="w-full scale-x-150" alt="" />
+      </div>
+      <div className="relative z-10 -mt-24 lg:mt-0 h-full flex items-center justify-center text-center">
+        <div className="w-11/12 lg:w-9/12 max-w-screen-xl mx-auto mb-4">
+          <h1 style={{ fontSize: fluidType(48, 64, 300, 2400, 1.5).fontSize, lineHeight: fluidType(28, 32, 300, 2400, 1.5).lineHeight }}>
+            { item.title}
+          </h1>
+          {
+            item.summary !== "" &&
+            <h2 className="mb-4" style={{ fontSize: fluidType(20, 24, 300, 2400, 1.5).fontSize, lineHeight: fluidType(16, 20, 300, 2400, 1.5).lineHeight }}>
+              { item.summary}
+            </h2>
+          }
           { item.content_html !== "" && item.content_html !== undefined &&
-            <div className="w-full lg:w-9/12 mx-auto mb-2 mr-auto flex flex-col items-end">
-              <article className="block prose max-w-none lg:w-11/12 text-black prose-a:text-blue-500 prose-a:underline-offset-4 prose-blockquote:bg-gray-100 prose-blockquote:p-8 prose-blockquote:border-0 prose-blockquote:prose-p:first-of-type:before:opacity-0 prose-a:visited:text-purple-500 prose-li:marker:text-emerald-500">
+            <div className="w-full">
+              <article className="block prose max-w-none text-black prose-a:text-blue-500 prose-a:underline-offset-4 prose-blockquote:bg-gray-100 prose-blockquote:p-8 prose-blockquote:border-0 prose-blockquote:prose-p:first-of-type:before:opacity-0 prose-a:visited:text-purple-500 prose-li:marker:text-emerald-500">
                 {parse(item.content_html)}
               </article>
             </div>

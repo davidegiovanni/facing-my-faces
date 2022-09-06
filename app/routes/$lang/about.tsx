@@ -21,8 +21,8 @@ export const meta: MetaFunction = ({ data, location }) => {
   
   if (data !== undefined) {
     const page = data.item
-    title = (page.title !== '' ? page.title : "About") + ' | Davide G. Steccanella'
-    description = page.summary !== '' ? page.summary : "Il CV e altre informazioni sull'illustratore Davide G. Steccanella"
+    title = (page.title !== '' ? page.title : "About")
+    description = page.summary !== '' ? page.summary : page.title !== '' ? page.title : "Facing my faces"
     image = page.image !== '' ? page.image : "https://cdn.revas.app/v0/01f9ekbw2n7m4sfc4xhtftyarv/01fv5pkdatk6nkxdmkhprnwxpz/01fv89a184detgp575h5zenqvq/holy-david-full-logo-png.png"
     url = 'https://facingmyfaces.davidegiovanni.com' + location.pathname
 
@@ -80,7 +80,7 @@ export default function About() {
   const params = useParams()
 
     return (
-      <div className="overflow-y-auto">
+      <div className="overflow-y-auto h-full w-full pt-16">
         <div className="absolute top-0 left-0 m-4 z-40 w-16 h-16 mix-blend-multiply">
           <Link to={`/${params.lang}`} className="underline">
             <p className="sr-only">
@@ -89,14 +89,14 @@ export default function About() {
             <img src="/icons/arrow.png" alt="" />
           </Link>
         </div>
-        <div className="flex-1 py-4 lg:py-16 px-4 mb-8 lg:mb-16 h-full text-center">
+        <div className="py-4 lg:py-16 px-4 mb-8 lg:mb-16 text-center">
           <div className="flex justify-start w-full lg:w-9/12 mx-auto mb-4 lg:mb-8">
             <div className="w-full">
-              <h1 style={{ fontSize: fluidType(24, 48, 300, 2400, 1.5).fontSize, lineHeight: fluidType(20, 32, 300, 2400, 1.5).lineHeight }} >
+              <h1 style={{ fontSize: fluidType(48, 64, 300, 2400, 1.5).fontSize, lineHeight: fluidType(28, 32, 300, 2400, 1.5).lineHeight }}>
                 {item.title}
               </h1>
               {item.summary && <div className="w-full py-4 mt-2 lg:px-4">
-                <h2 className="italic text-center" style={{ fontSize: fluidType(14, 16, 300, 2400, 1.5).fontSize, lineHeight: fluidType(12, 16, 300, 2400, 1.5).lineHeight }}>
+                <h2 className="italic text-center" style={{ fontSize: fluidType(20, 24, 300, 2400, 1.5).fontSize, lineHeight: fluidType(16, 20, 300, 2400, 1.5).lineHeight }}>
                   {item.summary}
                 </h2>
               </div>}
@@ -105,7 +105,7 @@ export default function About() {
           </div>
           { item.content_html !== "" && item.content_html !== undefined &&
             <div className="w-full mx-auto mb-2">
-              <article className="block prose max-w-none lg:w-11/12 mx-auto text-center text-black prose-a:text-blue-500 prose-a:underline-offset-4 prose-blockquote:bg-gray-100 prose-blockquote:p-8 prose-blockquote:border-0 prose-blockquote:prose-p:first-of-type:before:opacity-0 prose-a:visited:text-purple-500 prose-li:marker:text-emerald-500">
+              <article className="block prose max-w-none w-full mx-auto text-center text-black prose-a:text-blue-500 prose-a:underline-offset-4 prose-blockquote:bg-gray-100 prose-blockquote:p-8 prose-blockquote:border-0 prose-blockquote:prose-p:first-of-type:before:opacity-0 prose-a:visited:text-purple-500 prose-li:marker:text-emerald-500 prose-img:w-full prose-img:h-full prose-p:text-invisible prose-p:text-[0.1px]">
                 {parse(item.content_html)}
               </article>
             </div>
