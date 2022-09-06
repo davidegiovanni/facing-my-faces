@@ -101,7 +101,7 @@ export default function ItemPage() {
   const params = useParams()
 
   return (
-    <div className="h-full w-full overflow-y-scroll lg:overflow-y-hidden">
+    <div className="h-full w-full overflow-y-auto lg:overflow-y-hidden">
     <div className="grid grid-cols-1 lg:grid-cols-2 h-full w-full">
       <div className="relative z-10 aspect-square lg:aspect-auto flex items-center justify-center p-4 lg:h-full">
         <div className="w-full lg:w-1/2 h-full max-w-screen-md mx-auto">
