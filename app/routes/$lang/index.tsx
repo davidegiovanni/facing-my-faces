@@ -2,7 +2,7 @@ import { json, LinksFunction, LoaderFunction, MetaFunction } from "@remix-run/no
 import { Link, NavLink, useCatch, useLoaderData, useLocation, useParams } from "@remix-run/react";
 import { safeGet } from "~/utils/safe-post";
 import { loadTranslations } from "~/helpers/i18n";
-import { Feed, FeedItem, WebPageModel, WebSectionModel } from "api/models";
+import { Feed, FeedItem, WebLinkModel, WebPageModel, WebSectionModel } from "api/models";
 import metadata from '~/utils/metadata'
 import link from '~/utils/links'
 import { fluidType } from '~/utils/helpers'
@@ -55,6 +55,7 @@ type LoaderData = {
   secondary: string;
   feed: Feed;
   items: any[];
+  navbar: WebLinkModel[];
 };
 
 export const loader: LoaderFunction = async ({request, params}) => {
@@ -100,6 +101,8 @@ export const loader: LoaderFunction = async ({request, params}) => {
     array = []
   }
 
+  const navbar = websiteRes.website.headerNav.links
+
   const loaderData: LoaderData = {
     i18n,
     page: page,
@@ -108,14 +111,15 @@ export const loader: LoaderFunction = async ({request, params}) => {
     secondary,
     logo,
     feed,
-    items: couples
+    items: couples,
+    navbar
   }
 
   return json(loaderData)
 };
 
 export default function Index() {
-  const { i18n, sections, feed, items, secondary } = useLoaderData<LoaderData>();
+  const { i18n, sections, navbar, items, secondary } = useLoaderData<LoaderData>();
   const params = useParams()
 
   function getSlug (url: string) {
@@ -123,14 +127,58 @@ export default function Index() {
     return parsed.content
   }
 
+  function getLinkIcon (url: string): string {
+    if (url.toLowerCase().includes('instagram')) {
+      return 'instagram'
+    }
+    if (url.toLowerCase().includes('about')) {
+      return 'about'
+    }
+    if (url.toLowerCase().includes('illos.davidegiovanni.com')) {
+      return 'website'
+    }
+    if (url.toLowerCase().includes('add')) {
+      return 'add'
+    }
+    if (url.toLowerCase().includes('face-of-the-day')) {
+      return 'faceoftheday'
+    }
+    return 'default'
+  }
+
   return (
-    <div className="bg-red-500 h-full w-full p-12 flex flex-col">
-      <div className="relative z-20 font-sans mb-4">
-        <h1 className="text-2xl lg:text-6xl w-full text-center">
+    <div className="bg-red-500 h-full w-full p-12 flex flex-col overflow-y-auto">
+      <h1 className="relative z-20 lg:hidden text-2xl lg:text-6xl w-full text-center mb-4">
+        {sections[0].title}
+      </h1>
+      <div className="relative z-20 font-sans mb-4 flex items-center justify-center lg:justify-between">
+        <div className="flex items-center flex-1 lg:flex-none">
+        {
+          navbar.slice(0, navbar.length / 2).map(n => (
+            n.url.includes('https://facingmyfaces.davidegiovanni.com') ? 
+            <Link to={n.url.replace('https://facingmyfaces.davidegiovanni.com', `/${params.lang}`)} className="flex-none">
+              <span className="sr-only">{ n.title }</span> <img className="w-16 h-16" src={`/icons/${getLinkIcon(n.url)}.png`} alt="" />
+            </Link> :
+            <a href={n.url} className="flex-none" target="_blank" rel="noopener"><span className="sr-only">{ n.title }</span> <img className="w-16 h-16" src={`/icons/${getLinkIcon(n.url)}.png`} alt="" /></a>
+          ))
+        }
+        </div>
+        <h1 className="hidden lg:block text-2xl lg:text-6xl w-full text-center">
           {sections[0].title}
         </h1>
+        <div className="flex items-center lg:justify-end flex-1 lg:flex-none">
+          {
+            navbar.slice(navbar.length / 2).map(n => (
+              n.url.includes('https://facingmyfaces.davidegiovanni.com') ? 
+              <Link to={n.url.replace('https://facingmyfaces.davidegiovanni.com', `/${params.lang}`)} className="flex-none">
+                <span className="sr-only">{ n.title }</span> <img className="w-16 h-16" src={`/icons/${getLinkIcon(n.url)}.png`} alt="" />
+              </Link> :
+              <a href={n.url} className="flex-none" target="_blank" rel="noopener"><span className="sr-only">{ n.title }</span> <img className="w-16 h-16" src={`/icons/${getLinkIcon(n.url)}.png`} alt="" /></a>
+            ))
+          }
+        </div>
       </div>
-      <div className="h-full w-full grid grid-cols-6 gap-8 auto-rows-min relative z-20 overflow-y-auto flex-1">
+      <div className="h-full w-full grid grid-cols-2 lg:grid-cols-6 gap-8 auto-rows-min relative z-20 flex-1">
         {
           items.map(i => (
             <Link to={`/${params.lang}/faces/${getSlug(i[1].id)}`}>
@@ -155,6 +203,14 @@ export default function Index() {
             </Link>
           ))
         }
+        <div>
+          <p className="sr-only">
+            Add yours
+          </p>
+          <Link to={`/${params.lang}/add-yours`} className="flex items-center justify-center h-full w-full aspect-square hover:scale-125 transition ease-in-out delay-150 duration-200">
+            <img className="w-20 h-20" src="/icons/add.png" alt="" />
+          </Link>
+        </div>
       </div>
       <img src={sections[0].image} alt="" className="absolute inset-0 w-full h-full" />
     </div>

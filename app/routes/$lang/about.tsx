@@ -80,26 +80,27 @@ export default function About() {
   const params = useParams()
 
     return (
-      <div className="overflow-y-auto lg:overflow-y-hidden flex flex-col lg:flex-row h-full relative items-center justify-center">
-        <div className="absolute top-0 left-0 m-4 z-40">
+      <div className="overflow-y-auto">
+        <div className="absolute top-0 left-0 m-4 z-40 w-16 h-16 mix-blend-multiply">
           <Link to={`/${params.lang}`} className="underline">
             <p className="sr-only">
               Torna indietro
             </p>
-            <ArrowLeftIcon className="w-6 h-6" />
+            <img src="/icons/arrow.png" alt="" />
           </Link>
         </div>
-        <div className="flex-1 py-4 lg:py-16 lg:overflow-y-auto px-4 mb-8 lg:mb-16 h-full text-center">
+        <div className="flex-1 py-4 lg:py-16 px-4 mb-8 lg:mb-16 h-full text-center">
           <div className="flex justify-start w-full lg:w-9/12 mx-auto mb-4 lg:mb-8">
             <div className="w-full">
               <h1 style={{ fontSize: fluidType(24, 48, 300, 2400, 1.5).fontSize, lineHeight: fluidType(20, 32, 300, 2400, 1.5).lineHeight }} >
                 {item.title}
               </h1>
-              {item.summary && <div className="w-full columns-2 gap-4 border-y border-black py-4 mt-2 lg:px-4">
-                <h2 className="text-justify italic" style={{ fontSize: fluidType(14, 16, 300, 2400, 1.5).fontSize, lineHeight: fluidType(12, 16, 300, 2400, 1.5).lineHeight }}>
+              {item.summary && <div className="w-full py-4 mt-2 lg:px-4">
+                <h2 className="italic text-center" style={{ fontSize: fluidType(14, 16, 300, 2400, 1.5).fontSize, lineHeight: fluidType(12, 16, 300, 2400, 1.5).lineHeight }}>
                   {item.summary}
                 </h2>
               </div>}
+              <img src="/icons/divider-hr.png" className="w-full" alt="" />
             </div>
           </div>
           { item.content_html !== "" && item.content_html !== undefined &&

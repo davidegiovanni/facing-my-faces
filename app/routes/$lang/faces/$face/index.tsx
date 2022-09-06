@@ -101,9 +101,10 @@ export default function ItemPage() {
   const params = useParams()
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 overflow-y-auto lg:overflow-y-hidden h-full w-full">
-      <div className="aspect-square lg:aspect-auto flex items-center justify-center p-4 h-full">
-        <div className="w-1/2 h-full max-w-screen-md mx-auto">
+    <div className="h-full w-full overflow-y-scroll lg:overflow-y-hidden">
+    <div className="grid grid-cols-1 lg:grid-cols-2 h-full w-full">
+      <div className="relative z-10 aspect-square lg:aspect-auto flex items-center justify-center p-4 lg:h-full">
+        <div className="w-full lg:w-1/2 h-full max-w-screen-md mx-auto">
             <Attachment attachment={{
               id: "",
               mediaType: "image/",
@@ -112,7 +113,7 @@ export default function ItemPage() {
             }}></Attachment>
         </div>
       </div>
-      <div>
+      <div className="relative z-10 -mt-24 lg:mt-0">
         <div>
           { item.title}
           { item.summary}
@@ -124,33 +125,40 @@ export default function ItemPage() {
             </div>
           }
         </div>
+      </div>
+      <div className="w-full h-20 fixed inset-x-0 bottom-0 z-30 overflow-hidden">
+        <div className="flex h-full w-full relative z-10 items-center justify-between mix-blend-multiply">
         {
           previous !== '' ?
-            <Link to={`/${params.lang}/faces/${previous}`}>
+            <Link to={`/${params.lang}/faces/${previous}`} className="block group">
               <p className="sr-only">
                 Precedente
               </p>
-              <ArrowLeftIcon className="w-8 h-8" />
+              <img className="w-20 h-20 group-hover:rotate-6" src="/icons/arrow.png" alt="" />
             </Link> :
-            <div className="w-8 h-8"></div>
+            <div className="w-20 h-20"></div>
         }
-        <Link to={`/${params.lang}/faces`}>
+        <Link to={`/${params.lang}/faces`} className="block group">
           <p className="sr-only">
             Torna indietro
           </p>
-          <ViewGridIcon className="w-8 h-8" />
+          <img className="w-20 h-20 group-hover:rotate-6" src="/icons/home.png" alt="" />
         </Link>
         {
           next !== '' ?
-            <Link to={`/${params.lang}/faces/${next}`}>
+            <Link to={`/${params.lang}/faces/${next}`} className="block group">
               <p className="sr-only">
                 Successivo
               </p>
-              <ArrowRightIcon className="w-8 h-8" />
+              <img className="w-20 h-20 rotate-180 group-hover:rotate-[170deg]" src="/icons/arrow.png" alt="" />
             </Link> :
-            <div className="w-8 h-8"></div>
+            <div className="w-20 h-20"></div>
         }
+        </div>
+        <img src="/icons/bar.png" className="w-full h-full inset-0 absolute" alt="" />
       </div>
+      <img src="/icons/divider.png" alt="" className="hidden lg:block w-16 h-full inset-0 mx-auto fixed" />
+    </div>
     </div>
   );
 }
