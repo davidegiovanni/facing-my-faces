@@ -186,7 +186,7 @@ export default function Index() {
           }
         </div>
       </div>
-      <img src="/icons/divider-hr.png" className="w-full mb-6 lg:hidden relative z-10" alt="" />
+      <img src="/icons/divider-hr.png" className="w-full mb-6 lg:hidden relative z-50 pointer-events-none select-none" alt="" />
       <div className="h-full w-full grid grid-cols-2 lg:grid-cols-6 gap-8 auto-rows-min relative z-20 flex-1">
         {
           items.map(i => (
