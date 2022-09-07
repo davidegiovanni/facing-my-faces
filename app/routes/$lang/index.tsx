@@ -190,7 +190,7 @@ export default function Index() {
       <div className="h-full w-full grid grid-cols-2 lg:grid-cols-6 gap-8 auto-rows-min relative z-20 flex-1">
         {
           items.map(i => (
-            <Link to={`/${params.lang}/faces/${getSlug(i[1].id)}`}>
+            <Link to={`/${params.lang}/faces/${getSlug(i[1].id)}`} key={i[1].id}>
             <div className="w-full aspect-square relative group">
               <div className="w-full h-full relative z-20 group-hover:opacity-0">
                 <Attachment attachment={{
@@ -221,7 +221,7 @@ export default function Index() {
           </Link>
         </div>
       </div>
-      <img src={sections[0].image} alt="" className="absolute inset-0 w-full h-full z-50" />
+      <img src={sections[0].image} alt="" className="fixed inset-0 w-full h-full z-50" />
     </div>
   );
 }
