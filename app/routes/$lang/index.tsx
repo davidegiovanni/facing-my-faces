@@ -221,7 +221,7 @@ export default function Index() {
           </Link>
         </div>
       </div>
-      <img src={sections[0].image} alt="" className="absolute inset-0 w-full h-full" />
+      <img src={sections[0].image} alt="" className="absolute inset-0 w-full h-full z-50" />
     </div>
   );
 }
