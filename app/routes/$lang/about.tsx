@@ -80,7 +80,7 @@ export default function About() {
   const params = useParams()
 
     return (
-      <div className="overflow-y-auto h-full w-full pt-16">
+      <div className="overflow-y-auto h-full w-full pt-24 lg:pt-16">
         <div className="absolute top-0 left-0 m-4 z-40 w-16 h-16 mix-blend-multiply">
           <Link to={`/${params.lang}`} className="underline">
             <p className="sr-only">
@@ -100,7 +100,6 @@ export default function About() {
                   {item.summary}
                 </h2>
               </div>}
-              <img src="/icons/divider-hr.png" className="w-full" alt="" />
             </div>
           </div>
           { item.content_html !== "" && item.content_html !== undefined &&
