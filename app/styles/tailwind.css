@@ -1544,6 +1544,10 @@ img {
     justify-content: space-between;
   }
 
+  .lg\:overflow-y-auto {
+    overflow-y: auto;
+  }
+
   .lg\:overflow-y-hidden {
     overflow-y: hidden;
   }

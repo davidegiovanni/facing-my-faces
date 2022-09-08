@@ -48,6 +48,7 @@ type LoaderData = {
   previous: string;
   current: number;
   next: string;
+  portraitImage: string;
 };
 
 export const loader: LoaderFunction = async ({ request, params }) => {
@@ -80,6 +81,8 @@ export const loader: LoaderFunction = async ({ request, params }) => {
   nextItemSlug = nextItemSlug !== '' ? getSlug(nextItemSlug) as string : ''
   previousItemSlug = previousItemSlug !== '' ? getSlug(previousItemSlug) as string : ''
 
+  const portraitImage = feed.items[indexOfItem - 1].image
+
   const item: FeedItem = foundFace
 
   const canonical = `https://facingmyfaces.davidegiovanni.com/${params.lang}/${params.feed}/${params.item}`
@@ -90,14 +93,15 @@ export const loader: LoaderFunction = async ({ request, params }) => {
     item: item as FeedItem,
     current: indexOfItem,
     next: nextItemSlug,
-    previous: previousItemSlug
+    previous: previousItemSlug,
+    portraitImage
   }
 
   return json(loaderData);
 };
 
 export default function ItemPage() {
-  const { item, current, next, previous } = useLoaderData<LoaderData>();
+  const { item, portraitImage, next, previous } = useLoaderData<LoaderData>();
   const params = useParams()
 
   return (
@@ -116,8 +120,16 @@ export default function ItemPage() {
       <div className="lg:hidden -mt-20 overflow-hidden">
         <img src="/icons/divider-hr.png" className="w-full scale-x-150" alt="" />
       </div>
-      <div className="relative z-10 -mt-24 lg:mt-0 h-full flex items-center justify-center text-center">
+      <div className="relative z-10 -mt-24 lg:mt-0 h-full flex items-center justify-center text-center lg:overflow-y-auto">
         <div className="w-11/12 lg:w-9/12 max-w-screen-xl mx-auto mb-4">
+        <div className="w-full lg:w-1/2 h-full max-w-screen-md mx-auto">
+            <Attachment attachment={{
+              id: "",
+              mediaType: "image/",
+              url: portraitImage,
+              description: item.title
+            }}></Attachment>
+        </div>
           <h1 style={{ fontSize: fluidType(48, 64, 300, 2400, 1.5).fontSize, lineHeight: fluidType(28, 32, 300, 2400, 1.5).lineHeight }}>
             { item.title}
           </h1>
