@@ -120,7 +120,7 @@ export default function ItemPage() {
       <div className="lg:hidden -mt-20 overflow-hidden relative z-50">
         <img src="/icons/divider-hr.png" className="w-full scale-x-150" alt="" />
       </div>
-      <div className="relative z-10 -mt-8 lg:mt-0 h-full flex items-start justify-center text-center lg:overflow-y-auto pb-32 lg:pb-0">
+      <div className="relative z-10 -mt-8 lg:mt-0 h-full flex items-start justify-center text-center lg:overflow-y-auto pb-40 lg:pb-0">
         <div className="w-11/12 lg:w-9/12 max-w-screen-xl mx-auto mb-4">
           <div className="h-[20vh] w-full hidden lg:block" />
         <div className="w-1/2 mix-blend-multiply lg:w-1/2 h-full max-w-screen-md mx-auto">
@@ -149,8 +149,8 @@ export default function ItemPage() {
           }
         </div>
       </div>
-      <div className="w-full h-20 fixed inset-x-0 bottom-0 z-30 overflow-hidden">
-        <div className="flex h-full w-full relative z-10 items-center justify-between mix-blend-multiply">
+      <div className="w-full h-24 fixed inset-x-0 bottom-0 z-30 overflow-hidden">
+        <div className="flex h-full w-full relative z-10 items-center justify-between mix-blend-multiply translate-y-2">
         {
           previous !== '' ?
             <Link to={`/${params.lang}/faces/${previous}`} className="block group">

@@ -127,7 +127,7 @@ export const loader: LoaderFunction = async ({request, params}) => {
 };
 
 export default function Index() {
-  const { i18n, sections, navbar, items, secondary } = useLoaderData<LoaderData>();
+  const { i18n, sections, navbar, items, logo } = useLoaderData<LoaderData>();
   const params = useParams()
 
   function getSlug (url: string) {
@@ -155,38 +155,39 @@ export default function Index() {
   }
 
   return (
-    <div className="bg-white h-full w-full pb-12 pt-20 px-4 lg:p-12 flex flex-col overflow-y-auto">
-      <h1 className="relative z-20 lg:hidden w-full text-center mb-4" style={{ fontSize: fluidType(48, 64, 300, 2400, 1.5).fontSize, lineHeight: fluidType(28, 32, 300, 2400, 1.5).lineHeight }}>
-        {sections[0].title}
-      </h1>
-      <div className="relative z-20 font-sans mb-2 lg:mb-4 flex items-center justify-center lg:justify-between w-full">
+    <div className="bg-white h-full w-full pb-12 pt-4 px-4 lg:px-4 lg:py-4 flex flex-col overflow-y-auto">
+      <div className="relative z-20 font-sans mb-2 lg:mb-8 flex items-center justify-center lg:justify-between w-full">
         <div className="flex items-center flex-none">
         {
           navbar.slice(0, navbar.length / 2).map(n => (
             n.url.includes('https://facingmyfaces.davidegiovanni.com') ? 
             <Link to={n.url.replace('https://facingmyfaces.davidegiovanni.com', `/${params.lang}`)} className="flex-none group">
-              <span className="sr-only">{ n.title }</span> <img className="w-16 h-16 group-hover:rotate-6" src={`/icons/${getLinkIcon(n.url)}.png`} alt="" />
+              <span className="sr-only">{ n.title }</span> <img className="w-12 lg:w-16 h-12 lg:h-16 group-hover:rotate-6" src={`/icons/${getLinkIcon(n.url)}.png`} alt="" />
             </Link> :
-            <a href={n.url} className="flex-none group" target="_blank" rel="noopener"><span className="sr-only">{ n.title }</span> <img className="w-16 h-16 group-hover:-rotate-6" src={`/icons/${getLinkIcon(n.url)}.png`} alt="" /></a>
+            <a href={n.url} className="flex-none group" target="_blank" rel="noopener"><span className="sr-only">{ n.title }</span> <img className="w-12 lg:w-16 h-12 lg:h-16 group-hover:-rotate-6" src={`/icons/${getLinkIcon(n.url)}.png`} alt="" /></a>
           ))
         }
         </div>
-        <h1 className="hidden lg:block text-2xl lg:text-6xl w-full text-center">
-          {sections[0].title}
-        </h1>
+        <div className="hidden lg:block w-full text-center">
+          <h1 className="sr-only">{sections[0].title}</h1>
+          <img className="translate-x-6 h-16 w-auto mx-auto" src={logo} alt="" />
+        </div>
         <div className="flex items-center lg:justify-end flex-none">
           {
             navbar.slice(navbar.length / 2).map(n => (
               n.url.includes('https://facingmyfaces.davidegiovanni.com') ? 
               <Link to={n.url.replace('https://facingmyfaces.davidegiovanni.com', `/${params.lang}`)} className="flex-none group">
-                <span className="sr-only">{ n.title }</span> <img className="w-16 h-16 group-hover:rotate-6" src={`/icons/${getLinkIcon(n.url)}.png`} alt="" />
+                <span className="sr-only">{ n.title }</span> <img className="w-12 lg:w-16 h-12 lg:h-16 group-hover:rotate-6" src={`/icons/${getLinkIcon(n.url)}.png`} alt="" />
               </Link> :
-              <a href={n.url} className="flex-none group" target="_blank" rel="noopener"><span className="sr-only">{ n.title }</span> <img className="w-16 h-16 group-hover:-rotate-6" src={`/icons/${getLinkIcon(n.url)}.png`} alt="" /></a>
+              <a href={n.url} className="flex-none group" target="_blank" rel="noopener"><span className="sr-only">{ n.title }</span> <img className="w-12 lg:w-16 h-12 lg:h-16 group-hover:-rotate-6" src={`/icons/${getLinkIcon(n.url)}.png`} alt="" /></a>
             ))
           }
         </div>
       </div>
-      <img src="/icons/divider-hr.png" className="w-full mb-6 lg:hidden relative z-50 pointer-events-none select-none" alt="" />
+      <div className="relative z-20 lg:hidden w-full text-center mb-8" style={{ fontSize: fluidType(48, 64, 300, 2400, 1.5).fontSize, lineHeight: fluidType(28, 32, 300, 2400, 1.5).lineHeight }}>
+        <h1 className="sr-only">{sections[0].title}</h1>
+        <img src={logo} alt="" />
+      </div>
       <div className="h-full w-full grid grid-cols-2 lg:grid-cols-6 gap-8 auto-rows-min relative z-20 flex-1">
         {
           items.map(i => (

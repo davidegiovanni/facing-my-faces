@@ -42,7 +42,7 @@ html {
   -o-tab-size: 4;
      tab-size: 4;
   /* 3 */
-  font-family: "felt-tip-woman", sans-serif;
+  font-family: Karla, sans-serif;
   /* 4 */
 }
 
@@ -888,10 +888,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-width: 0;
 }
 
-.pointer-events-none {
-  pointer-events: none;
-}
-
 .fixed {
   position: fixed;
 }
@@ -985,10 +981,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 0.5rem;
 }
 
-.mb-6 {
-  margin-bottom: 1.5rem;
-}
-
 .-mt-20 {
   margin-top: -5rem;
 }
@@ -1029,20 +1021,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 4rem;
 }
 
+.h-12 {
+  height: 3rem;
+}
+
 .h-20 {
   height: 5rem;
 }
 
-.h-1\/3 {
-  height: 33.333333%;
-}
-
-.h-\[\] {
-  height: ;
-}
-
 .h-\[20vh\] {
   height: 20vh;
+}
+
+.h-24 {
+  height: 6rem;
 }
 
 .w-full {
@@ -1051,6 +1043,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-16 {
   width: 4rem;
+}
+
+.w-12 {
+  width: 3rem;
+}
+
+.w-auto {
+  width: auto;
 }
 
 .w-20 {
@@ -1085,6 +1085,21 @@ Ensure the default browser behavior of the `hidden` attribute.
   flex: none;
 }
 
+.translate-x-6 {
+  --tw-translate-x: 1.5rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.translate-y-4 {
+  --tw-translate-y: 1rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.translate-y-2 {
+  --tw-translate-y: 0.5rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 .rotate-180 {
   --tw-rotate: 180deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -1112,13 +1127,6 @@ Ensure the default browser behavior of the `hidden` attribute.
           animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-.select-none {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-
 .auto-rows-min {
   grid-auto-rows: -webkit-min-content;
   grid-auto-rows: min-content;
@@ -1142,10 +1150,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .items-center {
   align-items: center;
-}
-
-.items-stretch {
-  align-items: stretch;
 }
 
 .justify-start {
@@ -1260,12 +1264,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 3rem;
 }
 
-.pt-20 {
-  padding-top: 5rem;
+.pt-4 {
+  padding-top: 1rem;
 }
 
 .pb-32 {
   padding-bottom: 8rem;
+}
+
+.pb-40 {
+  padding-bottom: 10rem;
 }
 
 .text-left {
@@ -1277,17 +1285,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .font-sans {
-  font-family: "felt-tip-woman", sans-serif;
+  font-family: Karla, sans-serif;
 }
 
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
-}
-
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
 }
 
 .uppercase {
@@ -1524,10 +1527,6 @@ img {
     margin-bottom: 2rem;
   }
 
-  .lg\:mb-4 {
-    margin-bottom: 1rem;
-  }
-
   .lg\:mt-0 {
     margin-top: 0px;
   }
@@ -1544,12 +1543,20 @@ img {
     aspect-ratio: auto;
   }
 
+  .lg\:h-16 {
+    height: 4rem;
+  }
+
   .lg\:h-full {
     height: 100%;
   }
 
   .lg\:w-9\/12 {
     width: 75%;
+  }
+
+  .lg\:w-16 {
+    width: 4rem;
   }
 
   .lg\:w-1\/2 {
@@ -1580,10 +1587,6 @@ img {
     overflow-y: hidden;
   }
 
-  .lg\:p-12 {
-    padding: 3rem;
-  }
-
   .lg\:py-16 {
     padding-top: 4rem;
     padding-bottom: 4rem;
@@ -1594,12 +1597,12 @@ img {
     padding-right: 1rem;
   }
 
-  .lg\:pb-0 {
-    padding-bottom: 0px;
+  .lg\:py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 
-  .lg\:text-6xl {
-    font-size: 3.75rem;
-    line-height: 1;
+  .lg\:pb-0 {
+    padding-bottom: 0px;
   }
 }

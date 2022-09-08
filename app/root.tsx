@@ -134,6 +134,8 @@ export default function App() {
         {!!canonical && <link rel="canonical" href={canonical} />}
         {!!favicon && <link rel="icon" type="image/x-icon" href={favicon}></link>}
         <Links />
+        <link rel="preconnect" href="https://fonts.googleapis.com" /> 
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link rel="stylesheet" href={loaderData.fontFamilyUrl} />
       </head>
       <body>
