@@ -120,7 +120,7 @@ export default function ItemPage() {
       <div className="lg:hidden -mt-20 overflow-hidden relative z-50">
         <img src="/icons/divider-hr.png" className="w-full scale-x-150" alt="" />
       </div>
-      <div className="relative z-10 -mt-8 lg:mt-0 h-full flex items-start justify-center text-center lg:overflow-y-auto pb-40 lg:pb-0">
+      <div className="relative z-10 -mt-8 lg:mt-0 h-full flex items-start justify-center text-center lg:overflow-y-auto pb-40 lg:pb-20">
         <div className="w-11/12 lg:w-9/12 max-w-screen-xl mx-auto mb-4">
           <div className="h-[20vh] w-full hidden lg:block" />
         <div className="w-1/2 mix-blend-multiply lg:w-1/2 h-full max-w-screen-md mx-auto">
