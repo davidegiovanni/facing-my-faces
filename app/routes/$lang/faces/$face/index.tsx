@@ -117,12 +117,12 @@ export default function ItemPage() {
             }}></Attachment>
         </div>
       </div>
-      <div className="lg:hidden -mt-20 overflow-hidden">
+      <div className="lg:hidden -mt-20 overflow-hidden relative z-50">
         <img src="/icons/divider-hr.png" className="w-full scale-x-150" alt="" />
       </div>
-      <div className="relative z-10 -mt-24 lg:mt-0 h-full flex items-center justify-center text-center lg:overflow-y-auto">
+      <div className="relative z-10 -mt-8 lg:mt-0 h-full flex items-center justify-center text-center lg:overflow-y-auto pb-32 lg:pb-0">
         <div className="w-11/12 lg:w-9/12 max-w-screen-xl mx-auto mb-4">
-        <div className="w-full lg:w-1/2 h-full max-w-screen-md mx-auto">
+        <div className="w-1/2 mix-blend-multiply lg:w-1/2 h-full max-w-screen-md mx-auto">
             <Attachment attachment={{
               id: "",
               mediaType: "image/",
@@ -135,7 +135,7 @@ export default function ItemPage() {
           </h1>
           {
             item.summary !== "" &&
-            <h2 className="mb-4" style={{ fontSize: fluidType(20, 24, 300, 2400, 1.5).fontSize, lineHeight: fluidType(16, 20, 300, 2400, 1.5).lineHeight }}>
+            <h2 className="mb-4 mt-4" style={{ fontSize: fluidType(20, 24, 300, 2400, 1.5).fontSize, lineHeight: fluidType(16, 20, 300, 2400, 1.5).lineHeight }}>
               { item.summary}
             </h2>
           }
