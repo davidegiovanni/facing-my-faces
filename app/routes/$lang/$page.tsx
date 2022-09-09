@@ -96,6 +96,7 @@ export const loader: LoaderFunction = async ({ request, params }) => {
 export default function Page() {
   const { i18n, sections, navbar, secondary } = useLoaderData<LoaderData>();
   const params = useParams()
+  const location= useLocation()
 
   function getSlug(url: string) {
     const parsed = queryString.parse(url)
@@ -139,6 +140,17 @@ export default function Page() {
                 description: ""
               }} />
             </div>}
+            {
+              location.pathname.includes('add-yours') && <div>
+                <video className="w-full aspect-video mt-4 lg:mt-8" autoPlay muted poster="/poster.png">
+                  <source src="/video.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+                </video>
+              </div>
+            }
+            <div>
+
+            </div>
           </div>
         ))
       }
